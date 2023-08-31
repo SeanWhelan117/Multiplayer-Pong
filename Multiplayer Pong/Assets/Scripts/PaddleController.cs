@@ -5,7 +5,9 @@ using UnityEngine;
 public class PaddleController : MonoBehaviour
 {
     public float paddleSpeed = 5.0f;
-    public float boundaryY = 2.5f; 
+    public float boundaryY = 6.0f;
+
+    public int paddle = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -17,23 +19,30 @@ public class PaddleController : MonoBehaviour
     void Update()
     {
         // Move the left paddle
-        if (Input.GetKey(KeyCode.W))
+        if(paddle == 0)
         {
-            MovePaddle(Vector3.up);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            MovePaddle(Vector3.down);
+            if (Input.GetKey(KeyCode.W))
+            {
+                MovePaddle(Vector3.up);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                MovePaddle(Vector3.down);
+            }
         }
 
+
         // Move the right paddle
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (paddle == 1)
         {
-            MovePaddle(Vector3.up);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            MovePaddle(Vector3.down);
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                MovePaddle(Vector3.up);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                MovePaddle(Vector3.down);
+            }
         }
     }
    
