@@ -48,13 +48,13 @@ public class PaddleController : MonoBehaviour
    
     void MovePaddle(Vector3 direction)
     {
-        // Calculate new position
+        // newPos
         Vector3 newPosition = transform.position + direction * paddleSpeed * Time.deltaTime;
 
-        // Clamp the paddle's position within the play area
+        // Stay in area
         newPosition.y = Mathf.Clamp(newPosition.y, -boundaryY, boundaryY);
 
-        // Apply the new position
+        // ApplynewPos
         transform.position = newPosition;
     }
 }
