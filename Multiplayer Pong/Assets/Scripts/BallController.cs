@@ -28,7 +28,6 @@ public class BallController : MonoBehaviour
     {
         randStartY = Random.Range(-5, 5);
         transform.position = new Vector3(0.0f, randStartY, 0.0f);
-        Debug.Log("Set");
 
         Rigidbody2D ballRB = GetComponent<Rigidbody2D>();
 
