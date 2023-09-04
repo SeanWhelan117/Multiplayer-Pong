@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class PaddleController : MonoBehaviour
+public class PaddleController : NetworkBehaviour
 {
     public float paddleSpeed = 5.0f;
     public float boundaryY = 6.0f;
 
-    public int paddle = 0;
+   // public int paddle = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -18,51 +19,34 @@ public class PaddleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move the left paddle
-        if(paddle == 0)
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                MovePaddle(Vector3.up);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                MovePaddle(Vector3.down);
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            }
-        }
+        if (!isLocalPlayer)
+            return;
 
+        // LOCAL LOCAL
+        float moveInput = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(0, moveInput, 0) * paddleSpeed * Time.deltaTime;
+        transform.Translate(movement);
 
-        // Move the right paddle
-        if (paddle == 1)
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                MovePaddle(Vector3.up);
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                MovePaddle(Vector3.down);
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            }
-        }
-    }
-   
-    void MovePaddle(Vector3 direction)
-    {
-        // newPos
-        Vector3 newPosition = transform.position + direction * paddleSpeed * Time.deltaTime;
-
-        // Stay in area
+        //Calmp for bounds
+        Vector3 newPosition = transform.position;
         newPosition.y = Mathf.Clamp(newPosition.y, -boundaryY, boundaryY);
-
-        // ApplynewPos
         transform.position = newPosition;
+
+        CmdSyncPaddlePosition(transform.position);
+    }
+
+    [Command]
+    void CmdSyncPaddlePosition(Vector3 position)
+    {
+        // Update the paddle's position on the server
+        RpcUpdatePaddlePosition(position);
+    }
+
+    [ClientRpc]
+    void RpcUpdatePaddlePosition(Vector3 position)
+    {
+        // Update the paddle's position on all clients
+        transform.position = position;
     }
 }
+
