@@ -29,6 +29,10 @@ public class PaddleController : MonoBehaviour
             {
                 MovePaddle(Vector3.down);
             }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            }
         }
 
 
@@ -42,6 +46,10 @@ public class PaddleController : MonoBehaviour
             else if (Input.GetKey(KeyCode.DownArrow))
             {
                 MovePaddle(Vector3.down);
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
         }
     }
