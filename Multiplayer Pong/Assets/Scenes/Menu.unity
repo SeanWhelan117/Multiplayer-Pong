@@ -929,7 +929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff924f2acdd2b54ba4f5fd086e16ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: LocalPong
+  sceneName: NetworkedPong
 --- !u!114 &1784911118
 MonoBehaviour:
   m_ObjectHideFlags: 0

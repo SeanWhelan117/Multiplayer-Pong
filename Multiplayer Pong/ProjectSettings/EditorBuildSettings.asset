@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9351c77a7230f3d449d1cf341d4d3ca2
+  - enabled: 1
     path: Assets/Scenes/LocalPong.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 9351c77a7230f3d449d1cf341d4d3ca2
+    path: Assets/Scenes/NetworkedPong.unity
+    guid: 53e62f64db3c5154586633df779d4c4e
   m_configObjects: {}
