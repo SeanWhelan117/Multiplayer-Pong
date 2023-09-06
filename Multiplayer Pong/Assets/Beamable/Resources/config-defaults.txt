@@ -1,0 +1,8 @@
+{
+    "cid": "1658685374408708",
+    "alias": "sean-whelan",
+    "pid": "DE_1658685374408711",
+    "platform": "",
+    "socket": "",
+    "containerPrefix": ""
+}
