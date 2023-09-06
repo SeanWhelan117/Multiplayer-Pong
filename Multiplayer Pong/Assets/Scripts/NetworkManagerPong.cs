@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using Beamable;
 
 namespace Mirror
 {
@@ -12,7 +13,6 @@ namespace Mirror
         public Transform paddleSpawnRight;
 
         GameObject ball;
-
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
             // add player at correct spawn position
